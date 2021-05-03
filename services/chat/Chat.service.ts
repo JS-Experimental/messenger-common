@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { Http } from '@javid/common/tools/http/HttpClient';
+import { Http } from '@metall/common/tools/http/HttpClient';
 
 const getMessages = async () => {
   try {
