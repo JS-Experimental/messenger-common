@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { Http } from '@metall/common/tools/http/HttpClient';
+import { Http } from '../../tools/http/HttpClient';
 
 const getMessages = async () => {
   try {
@@ -11,6 +11,4 @@ const getMessages = async () => {
   }
 };
 
-export default function useMessages(threadId: string) {
-  return useQuery(['thread', threadId], () => getMessages());
-}
+export const useMessages = (threadId: string) => useQuery(['thread', threadId], () => getMessages());
