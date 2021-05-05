@@ -1,6 +1,6 @@
 {
-  "name": "@metall/common",
-  "version": "1.0.1",
+  "name": "@metall/common1",
+  "version": "1.0.8",
   "source": "./src/index.ts",
   "main": "dist/index.js",
   "umd:main": "dist/foo.umd.js",
@@ -9,7 +9,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "microbundle-crl --no-compress --format modern,cjs"
+    "build": "microbundle-crl --no-compress --format modern,cjs",
+    "dev": "microbundle-crl watch --no-compress --format modern,cjs"
   },
   "author": "",
   "license": "ISC",
