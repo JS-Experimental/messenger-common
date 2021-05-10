@@ -1,14 +1,31 @@
-import { useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { Http } from '../../tools/http/HttpClient';
 
-const getMessages = async () => {
-  try {
-    const { data } = await Http.get('/messages');
+export function ChatService() {
+  const queryClient = useQueryClient();
 
-    return data;
-  } catch (e) {
-    throw new Error(e);
-  }
-};
+  const getMessages = async () => {
+    try {
+      const { data } = await Http.get('/messages');
 
-export const useMessages = (threadId: string) => useQuery(['thread', threadId], () => getMessages());
+      return data;
+    } catch (e) {
+      throw new Error(e);
+    }
+  };
+
+  const sendMessage = (messageText: string) => Http.post('/message', { messageText });
+
+  const useMessages = (threadId: string) => useQuery(['thread', threadId], () => getMessages());
+
+  const useSendMessage = () => useMutation(sendMessage, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('thread');
+    }
+  });
+
+  return {
+    useMessages,
+    useSendMessage
+  };
+}
