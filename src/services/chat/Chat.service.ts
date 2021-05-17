@@ -1,12 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { Http } from '../../tools/http/HttpClient';
+import { HTTP } from '../../tools/http/HttpClient';
 
 export function ChatService() {
   const queryClient = useQueryClient();
 
   const getMessages = async () => {
     try {
-      const { data } = await Http.get('/messages');
+      const { data } = await HTTP.client().get('/messages');
 
       return data;
     } catch (e) {
@@ -14,7 +14,7 @@ export function ChatService() {
     }
   };
 
-  const sendMessage = (messageText: string) => Http.post('/message', { messageText });
+  const sendMessage = (messageText: string) => HTTP.client().post('/message', { messageText });
 
   const useMessages = (threadId: string) => useQuery(['thread', threadId], () => getMessages());
 
