@@ -5,7 +5,11 @@ export const HTTP = (function () {
 
   return {
     createClient(url:string): AxiosInstance {
-      console.log('CREATE HTTP CLIENT');
+
+      if($client) {
+        return $client
+      }
+
       $client = axios.create({
         baseURL: url || 'http://localhost:4000/api/',
         timeout: 1000
@@ -14,7 +18,6 @@ export const HTTP = (function () {
       return $client;
     },
     client() {
-      console.log('GET HTTP CLIENT');
       return $client;
     }
   };

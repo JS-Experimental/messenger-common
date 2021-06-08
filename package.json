@@ -1,6 +1,6 @@
 {
   "name": "@metall/common1",
-  "version": "1.0.8",
+  "version": "1.0.15",
   "source": "./src/index.ts",
   "main": "dist/index.js",
   "umd:main": "dist/foo.umd.js",
